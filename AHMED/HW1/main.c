@@ -1,51 +1,78 @@
 #include <stdio.h>
- 
+
 int main()
 {
-  int m, n, p, q, c, d, k, sum = 0;
-  int first[10][10], second[10][10], multiply[10][10];
- 
-  printf("Enter number of rows and columns of first matrix\n");
-  scanf("%d%d", &m, &n);
-  printf("Enter elements of first matrix\n");
- 
-  for (c = 0; c < m; c++)
-    for (d = 0; d < n; d++)
-      scanf("%d", &first[c][d]);
- 
-  printf("Enter number of rows and columns of second matrix\n");
-  scanf("%d%d", &p, &q);
- 
-  if (n != p)
-    printf("The multiplication isn't possible.\n");
-  else
-  {
-    printf("Enter elements of second matrix\n");
- 
-    for (c = 0; c < p; c++)
-      for (d = 0; d < q; d++)
-        scanf("%d", &second[c][d]);
- 
-    for (c = 0; c < m; c++) {
-      for (d = 0; d < q; d++) {
-        for (k = 0; k < p; k++) {
-          sum = sum + first[c][k]*second[k][d];
-        }
- 
-        multiply[c][d] = sum;
-        sum = 0;
-      }
-    }
- 
-    printf("Product of the matrices:\n");
- 
-    for (c = 0; c < m; c++) {
-      for (d = 0; d < q; d++)
-        printf("%d\t", multiply[c][d]);
- 
-      printf("\n");
-    }
+  int arr1[50][50],brr1[50][50],crr1[50][50],i,j,k,r1,c1,r2,c2,sum=0;
+  
+       printf("\n\nMultiplication of two Matrices :\n");
+       printf("----------------------------------\n");
+  
+  printf("\nInput the rows and columns of first matrix : ");
+  scanf("%d %d",&r1,&c1);
+  printf("\nInput the rows and columns of second matrix : ");
+  scanf("%d %d",&r2,&c2);
+  if(c1!=r2){
+      printf("Mutiplication of Matrix is not possible.");
+      printf("\nColumn of first matrix and row of second matrix must be same.");
   }
- 
-  return 0;
+  else
+      {
+       printf("Input elements in the first matrix :\n");
+       for(i=0;i<r1;i++)
+        {
+            for(j=0;j<c1;j++)
+            {
+               printf("element - [%d],[%d] : ",i,j);
+               scanf("%d",&arr1[i][j]);
+            }
+        }
+       printf("Input elements in the second matrix :\n");
+       for(i=0;i<r2;i++)
+        {
+            for(j=0;j<c2;j++)
+            {
+               printf("element - [%d],[%d] : ",i,j);
+               scanf("%d",&brr1[i][j]);
+            }
+        }
+      printf("\nThe First matrix is :\n");
+          for(i=0;i<r1;i++)
+            {
+              printf("\n");
+              for(j=0;j<c1;j++)
+              printf("%d\t",arr1[i][j]);
+            }
+  
+      printf("\nThe Second matrix is :\n");
+          for(i=0;i<r2;i++)
+            {
+              printf("\n");
+              for(j=0;j<c2;j++)
+              printf("%d\t",brr1[i][j]);
+            }
+//multiplication of matrix
+      for(i=0;i<r1;i++)
+          for(j=0;j<c2;j++)
+           crr1[i][j]=0;
+             for(i=0;i<r1;i++)    //row of first matrix
+                 {
+                   for(j=0;j<c2;j++)    //column of second matrix
+                     {
+                       sum=0;
+                         for(k=0;k<c1;k++)
+                           sum=sum+arr1[i][k]*brr1[k][j];
+                           crr1[i][j]=sum;
+                     }
+                 }
+  printf("\nThe multiplication of two matrices is : \n");
+  for(i=0;i<r1;i++)
+     {
+        printf("\n");
+        for(j=0;j<c2;j++)
+         {
+           printf("%d\t",crr1[i][j]);
+         }
+     }
+  }
+printf("\n\n");
 }
